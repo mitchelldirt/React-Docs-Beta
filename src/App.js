@@ -67,9 +67,31 @@ function DisplayAdminOrLogin() {
   )
 }
 
+// Create list to be used in component
+const products = [
+  { title: 'Light Roast Coffee', isKenyanCoffee: true, id: '1' },
+  { title: 'Medium Roast Coffee', isKenyanCoffee: true, id: '2' },
+  { title: 'Dark Roast Coffee', isKenyanCoffee: false, id: '3' }
+];
 
 
-export default function Profile() {
+function BestCoffeeEver() {
+  const listItems = products.map(product =>
+    <li key={product.id}
+      style={{
+        color: product.isKenyanCoffee ? 'orange' : 'blue'
+      }}>
+      {product.title}
+    </li>
+  );
+
+  return (
+    <ul>{listItems}</ul>
+  )
+}
+
+
+export default function App() {
   return (
     <>
       {/* Putting all the logic into a component */}
@@ -82,6 +104,9 @@ export default function Profile() {
 
       {/* Using stateless pros to create a UserAvatar component */}
       <UserAvatar user={user} />
+
+      {/* Use a list to create a component */}
+      <BestCoffeeEver />
     </>
   );
 }
