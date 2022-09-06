@@ -9,6 +9,8 @@ p {
   width: 100px;
   height: 25px;
   font-size: large;
+  width: fit-content;
+  margin: 10px;
 }
 
 .avatar {

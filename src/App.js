@@ -1,21 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
 import './style.css';
 
 // Create first component and add a class to it.
 function MyButton() {
-  return (<button className='testClass'>Hello</button>);
-}
+  const [clicks, setClicks] = useState(0)
 
-function Button() {
-  return (
-    <div>
-      <MyButton />
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
-    </div>
-  );
-}
+  function handleClicking() {
+    setClicks(clicks + 1);
+  }
 
+
+  return (<button onClick={handleClicking} className='testClass'>Click Count: {clicks}</button>);
+}
 
 // How to use data in a component
 const user = {
@@ -91,7 +88,32 @@ function BestCoffeeEver() {
 }
 
 
+// handling events
+function EventButton() {
+  function handleClick() {
+    alert('You clicking me?')
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click Me :)
+    </button>
+  )
+}
+
+function SharedStateButton({count, onClick}) {
+  return (
+    <button onClick={onClick}>Click Count: {count}</button>
+  )
+}
+
 export default function App() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
   return (
     <>
       {/* Putting all the logic into a component */}
@@ -107,6 +129,19 @@ export default function App() {
 
       {/* Use a list to create a component */}
       <BestCoffeeEver />
+
+      {/* Handle the click of a button */}
+      <EventButton />
+
+      {/* Handling state */}
+      <h2>Buttons without shared state</h2>
+      <MyButton />
+      <MyButton />
+
+      {/* Sharing state */}
+      <h2>Buttons with shared state</h2>
+      <SharedStateButton count={count} onClick={handleClick} />
+      <SharedStateButton count={count} onClick={handleClick} />
     </>
   );
 }
