@@ -101,13 +101,104 @@ function EventButton() {
   )
 }
 
-function SharedStateButton({count, onClick}) {
+function SharedStateButton({ count, onClick }) {
   return (
     <button onClick={onClick}>Click Count: {count}</button>
   )
 }
 
-export default function App() {
+function ProductCategoryRow({ category }) {
+  return (
+    <tr>
+      <th colSpan="2">
+        {category}
+      </th>
+    </tr>
+  )
+}
+
+function ProductRow({ produce }) {
+  const name = produce.stocked ? produce.name :
+    <span style={{ color: 'red' }}>
+      {produce.name}
+    </span>
+
+  return (<tr>
+    <td>
+      {name}
+    </td>
+
+    <td>
+      {produce.price}
+    </td>
+  </tr>
+  )
+}
+
+function ProductTable({ produce }) {
+  const rows = [];
+  let lastCategory = null;
+
+  produce.forEach(item => {
+    if (item.category !== lastCategory) {
+      rows.push(
+        <ProductCategoryRow category={item.category} key={item.category} />
+      );
+    }
+
+    rows.push(
+      <ProductRow produce={item} key={item.name} />
+    );
+    lastCategory = item.category;
+  });
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  )
+}
+
+function SearchBar() {
+  return (
+    <form>
+      <input type="text" placeholder="Search..." />
+      <label>
+        <input type="checkbox" />
+        {' '}
+        Only show products in stock
+      </label>
+    </form>
+  )
+}
+
+const PRODUCE = [
+  { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+  { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+  { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+  { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+  { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+  { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
+]
+
+export default function filterableProductTable({ produce }) {
+  return (
+    <div>
+      <SearchBar />
+      <ProductTable produce={PRODUCE} key={1} />
+    </div>
+  )
+}
+
+
+
+
+function App() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
