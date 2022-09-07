@@ -1,3 +1,3 @@
-# react-bdm4nt
+# Learning React!
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-bdm4nt)
+This repo will contain (probably) all of the code from the react beta docs. I'll be pushing myself to code some react on a regular basis :)
