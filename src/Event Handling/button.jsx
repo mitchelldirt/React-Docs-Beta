@@ -1,21 +1,36 @@
-function AwesomeButton({ message, children }) {
+function AwesomeButton({ onClick, children }) {
     return (
-        <button onClick={() => alert(message)}>
+        <button onClick={onClick}>
             {children}
         </button>
+    );
+}
+
+function PlayMovieButton({ movieName }) {
+    function handlePlayClick() {
+        alert(`Playing ${movieName}!`)
+    }
+
+    return (
+        <AwesomeButton onClick={handlePlayClick}>
+            Play "{movieName}"
+        </AwesomeButton>
+    )
+}
+
+function UploadButton() {
+    return (
+        <AwesomeButton onClick={() => alert('Uploading!')}>
+            Upload Image
+        </AwesomeButton>
     );
 }
 
 export default function Toolbar() {
     return (
         <div>
-            <AwesomeButton message='Playing!'>
-                Play Movie
-            </AwesomeButton>
-
-            <AwesomeButton message='Uploading!' >
-                Upload Image
-            </AwesomeButton>
+            <PlayMovieButton movieName='The Lord of The Rings' />
+            <UploadButton />
         </div>
     );
 }
