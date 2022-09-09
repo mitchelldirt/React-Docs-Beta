@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import './style.css';
+import Gallery from './Gallery/gallery';
+import { Profile } from './Gallery/gallery.js'
+import ToolBar from './Event Handling/button';
 
 // Create first component and add a class to it.
 function MyButton() {
@@ -203,7 +206,7 @@ const PRODUCE = [
   { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
 ]
 
-export default function filterableProductTable({ produce }) {
+function filterableProductTable({ produce }) {
   const [filterText, setFilterText] = useState('fruit');
   const [inStockOnly, setInStockOnly] = useState(false);
 
@@ -225,7 +228,7 @@ export default function filterableProductTable({ produce }) {
 
 
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
@@ -260,6 +263,17 @@ function App() {
       <h2>Buttons with shared state</h2>
       <SharedStateButton count={count} onClick={handleClick} />
       <SharedStateButton count={count} onClick={handleClick} />
+      
+      {/* Exporting / importing components */}
+      <Gallery />
+
+      {/* Using a named export import */}
+      <Profile />
+
+      {/* Event Handling button */}
+      <ToolBar />
     </>
+
+    
   );
 }
