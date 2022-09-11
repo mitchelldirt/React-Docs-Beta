@@ -4,6 +4,7 @@ import './style.css';
 import Gallery from './Gallery/gallery';
 import { Profile } from './Gallery/gallery.js'
 import ToolBar from './Event Handling/button';
+import SculptureGallery from './Handling State/state';
 
 // Create first component and add a class to it.
 function MyButton() {
@@ -272,8 +273,8 @@ export default function App() {
 
       {/* Event Handling button */}
       <ToolBar />
-    </>
 
-    
+  <SculptureGallery />
+  </>   
   );
 }
